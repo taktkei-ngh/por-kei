@@ -61,7 +61,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-      // Tạo 900 hạt sao 3D màu xanh neon
+      // Tạo hạt sao 3D
       const count = 900;
       const geometry = new THREE.BufferGeometry();
       const positions = new Float32Array(count * 3);
@@ -168,6 +168,25 @@ document.addEventListener("DOMContentLoaded", () => {
     revealElements.forEach((el) => el.classList.add("is-visible"));
   }
 
+  // Active Navigation Link Scroll Observer
+  const observedSections = document.querySelectorAll("#home, #about, #skills, #projects, #contact");
+  if ("IntersectionObserver" in window && observedSections.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const sectionId = entry.target.id;
+          navItems.forEach((link) => {
+            const isActive = link.getAttribute("href") === `#${sectionId}`;
+            link.classList.toggle("active", isActive);
+          });
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
+    observedSections.forEach((s) => sectionObserver.observe(s));
+  }
+
   // Interactive Keyboard Skills
   const keyboard = document.getElementById("skillKeyboard");
   const keys = document.querySelectorAll(".key[data-skill]");
@@ -258,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Background Music Player
+  // Background Music Player (Tự động cất nhạc ở tương tác người dùng đầu tiên)
   const music = document.getElementById("backgroundMusic");
   const toggle = document.getElementById("musicToggle");
   const mute = document.getElementById("musicMute");
@@ -266,8 +285,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (music) {
     music.volume = 0.25;
+
+    // Tự động phát khi tương tác bất kỳ trên web
+    function startAudioOnInteraction() {
+      music.play().then(() => {
+        if (toggle) toggle.textContent = "⏸";
+        ['click', 'touchstart', 'scroll', 'keydown'].forEach((evt) =>
+          document.removeEventListener(evt, startAudioOnInteraction)
+        );
+      }).catch(() => {});
+    }
+
+    ['click', 'touchstart', 'scroll', 'keydown'].forEach((evt) =>
+      document.addEventListener(evt, startAudioOnInteraction, { once: true })
+    );
+
     if (toggle) {
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation(); // Ngăn sự kiện đè nhau
         if (music.paused) {
           music.play();
           toggle.textContent = "⏸";
@@ -277,12 +312,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+
     if (mute) {
-      mute.addEventListener("click", () => {
+      mute.addEventListener("click", (e) => {
+        e.stopPropagation();
         music.muted = !music.muted;
         mute.textContent = music.muted ? "×" : "♪";
       });
     }
+
     if (progress) {
       music.addEventListener("timeupdate", () => {
         if (music.duration) progress.value = (music.currentTime / music.duration) * 100;

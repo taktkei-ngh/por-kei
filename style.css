@@ -2209,98 +2209,375 @@ img {
   }
 }
 
-/* Theme toggle button */
+/* =========================================
+   THEME VARIABLES (DARK / LIGHT)
+   ========================================= */
+:root {
+  --bg-color: #090909;
+  --text-color: #f5f5f5;
+  --panel-bg: #121212;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #ffffff;
+}
+
+[data-theme="light"] {
+  --bg-color: #f8f9fa;
+  --text-color: #1a1a1a;
+  --panel-bg: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --accent-color: #000000;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Style cho nút Theme Toggle */
 .theme-toggle {
+  background: var(--panel-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 13px;
-  border: 1px solid var(--border-color, #333);
-  border-radius: 999px;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.25s ease;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
 .theme-toggle:hover {
-  transform: translateY(-2px);
+  border-color: var(--text-color);
 }
 
-/* Light mode */
-body.light-mode {
-  background: #f5f5f2;
-  color: #171717;
-}
-
-body.light-mode header,
-body.light-mode .navbar {
-  background: rgba(245, 245, 242, 0.9);
-}
-
-body.light-mode .theme-toggle {
-  border-color: #d0d0ca;
-  color: #171717;
-}
-
-body.light-mode .hero,
-body.light-mode section,
-body.light-mode .project-card,
-body.light-mode .tech-card {
-  color: #171717;
-}
-
-body.light-mode p,
-body.light-mode .section-description {
-  color: #555;
-}
-
-body.light-mode .project-card,
-body.light-mode .tech-card,
-body.light-mode .about-card {
-  background: #fff;
-  border-color: #e4e4df;
-}
-
-/* Theme notification */
-.theme-toast:empty {
-  display: none;
-}
-
+/* Toast thông báo */
 .theme-toast {
   position: fixed;
-  top: 85px;
+  bottom: 24px;
   right: 24px;
-  z-index: 9999;
-  max-width: 340px;
-  padding: 14px 18px;
-  border: 1px solid #555;
-  border-radius: 12px;
-  background: #171717;
-  color: #fff;
-  font-size: 8px;
-  line-height: 1.6;
-  box-shadow: 0 8px 30px #0002;
+  background: var(--panel-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: 'DM Mono', monospace;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
 }
 
-body.light-mode .theme-toast {
-  background: #fff;
-  color: #171717;
-  border-color: #ddd;
+.theme-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}/* =========================================
+   CONTACT FORM STYLES
+   ========================================= */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.form-group input,
+.form-group textarea {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--text-color);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.copy-feedback {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-family: 'DM Mono', monospace;
+}
+.copy-feedback.success { color: #4CAF50; }
+.copy-feedback.error { color: #F44336; }
+/* =========================================
+   THEME TOGGLE BUTTON & TOAST STYLES
+   ========================================= */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-color, #ffffff);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Biến màu sắc cho Light Mode */
+[data-theme="light"] {
+  background-color: #f8f9fa !important;
+  color: #121212 !important;
+}
+
+[data-theme="light"] .site-header,
+[data-theme="light"] .panel,
+[data-theme="light"] .profile-card {
+  background-color: #ffffff !important;
+  color: #121212 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .nav-link,
+[data-theme="light"] .button-quiet {
+  color: #333333 !important;
+}
+
+[data-theme="light"] .theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  color: #121212;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Toast thông báo góc màn hình */
+.theme-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #181818;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: 'DM Mono', monospace;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+.theme-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* =========================================
+   LIGHT MODE STYLES (ĐỔI MÀU TOÀN BỘ)
+   ========================================= */
+[data-theme="light"] {
+  --bg-color: #f8f9fa !important;
+  --text-color: #121212 !important;
+  --panel-bg: #ffffff !important;
+  --border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+[data-theme="light"] body {
+  background-color: #f8f9fa !important;
+  color: #121212 !important;
+}
+
+[data-theme="light"] .site-header,
+[data-theme="light"] .panel,
+[data-theme="light"] .profile-card,
+[data-theme="light"] .about-main,
+[data-theme="light"] .about-stat,
+[data-theme="light"] .about-note,
+[data-theme="light"] .roadmap-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .contact-panel,
+[data-theme="light"] .site-footer {
+  background-color: #ffffff !important;
+  color: #121212 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .nav-link,
+[data-theme="light"] .muted-heading,
+[data-theme="light"] p,
+[data-theme="light"] span {
+  color: #2b2b2b !important;
+}
+
+[data-theme="light"] .nav-link.active {
+  color: #000000 !important;
+  font-weight: 600;
+}
+
+[data-theme="light"] .theme-toggle {
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #121212 !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Toast thông báo */
+.theme-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #181818;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: 'DM Mono', monospace;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+.theme-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* =========================================
+   TECH STACK GRID (NARESH KHATRI STYLE)
+   ========================================= */
+.text-center {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-subtitle {
+  color: #888888;
+  font-size: 0.95rem;
+  margin-top: 6px;
+  font-family: 'DM Mono', monospace;
+}
+
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tech-card {
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.tech-card span {
+  color: #e0e0e0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Hiệu ứng Hover đổi màu nền & nâng thẻ */
+.tech-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.tech-card:hover img {
+  transform: scale(1.12);
+}
+
+/* Tự động đảo màu icon đen thành trắng cho Dark Mode */
+.invert-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Light Mode Support */
+[data-theme="light"] .tech-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .tech-card span {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .invert-icon {
+  filter: none;
+}
+
+/* Responsive cho Mobile & Tablet */
+@media (max-width: 900px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
-  .theme-toggle {
-    padding: 13px 10px;
-    font-size: 12px;
+  .tech-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+/* =========================================
+   AVATAR SMOOTH SWITCH & BLUR ANIMATION
+   ========================================= */
+.keii-avatar {
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  will-change: filter, transform, opacity;
+}
 
-  .theme-toast {
-    left: 16px;
-    right: 16px;
-    top: 75px;
-    max-width: none;
-  }
+/* Lớp CSS kích hoạt khi đang chuyển đổi hình ảnh */
+.keii-avatar.is-blurring {
+  filter: blur(8px) brightness(1.1);
+  transform: scale(0.96);
+  opacity: 0.8;
 }

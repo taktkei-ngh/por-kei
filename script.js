@@ -1,23 +1,21 @@
 /* =========================================
-   KEII PORTFOLIO — INTERACTIONS
+   KEII PORTFOLIO — INTERACTIONS & LOGIC
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Current year
+  // 1. Current Year
   const yearElement = document.getElementById("year");
-
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
 
-  // Mobile navigation
+  // 2. Mobile Navigation
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
   const navItems = document.querySelectorAll(".nav-link");
 
   function closeMenu() {
     if (!menuToggle || !navLinks) return;
-
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Open navigation");
     navLinks.classList.remove("is-open");
@@ -26,13 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
       const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-
       menuToggle.setAttribute("aria-expanded", String(!isOpen));
       menuToggle.setAttribute(
         "aria-label",
         isOpen ? "Open navigation" : "Close navigation"
       );
-
       navLinks.classList.toggle("is-open", !isOpen);
     });
 
@@ -55,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Reveal sections on scroll
+  // 3. Reveal Elements on Scroll
   const revealElements = document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window) {
@@ -83,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Active navigation based on visible section
+  // 4. Active Navigation Indicator Based on Visible Section
   const observedSections = document.querySelectorAll(
     "#home, #about, #skills, #projects, #contact"
   );
@@ -98,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           navItems.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${sectionId}`;
-
             link.classList.toggle("active", isActive);
           });
         });
@@ -114,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Interactive keyboard skill information
+  // 5. Interactive Keyboard Skills
   const keyboard = document.getElementById("skillKeyboard");
   const keys = document.querySelectorAll(".key[data-skill]");
 
@@ -123,128 +118,103 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "HTML",
       category: "FRONTEND",
       icon: "</>",
-      description:
-        "Learning how to structure web pages with semantic HTML and accessible markup.",
+      description: "Learning how to structure web pages with semantic HTML and accessible markup.",
       status: "Learning",
       index: "01"
     },
-
     css: {
       title: "CSS",
       category: "FRONTEND",
       icon: "✳",
-      description:
-        "Exploring layouts, responsive design, typography, transitions and visual details.",
+      description: "Exploring layouts, responsive design, typography, transitions and visual details.",
       status: "Learning",
       index: "02"
     },
-
     javascript: {
       title: "JavaScript",
       category: "PROGRAMMING",
       icon: "JS",
-      description:
-        "Practising programming logic and using JavaScript to make web interfaces interactive.",
+      description: "Practising programming logic and using JavaScript to make web interfaces interactive.",
       status: "Learning",
       index: "03"
     },
-
     python: {
       title: "Python",
       category: "PROGRAMMING",
       icon: "Py",
-      description:
-        "Building programming fundamentals and learning to solve problems with Python.",
+      description: "Building programming fundamentals and learning to solve problems with Python.",
       status: "Exploring",
       index: "04"
     },
-
     sql: {
       title: "SQL",
       category: "DATABASE",
       icon: "▦",
-      description:
-        "Learning how to query, organise and manage structured data in relational databases.",
+      description: "Learning how to query, organise and manage structured data in relational databases.",
       status: "Learning",
       index: "05"
     },
-
     git: {
       title: "Git",
       category: "DEVELOPER TOOLS",
       icon: "⌘",
-      description:
-        "Practising version control to track changes and manage code more confidently.",
+      description: "Practising version control to track changes and manage code more confidently.",
       status: "Learning",
       index: "06"
     },
-
     frontend: {
       title: "Frontend",
       category: "WEB DEVELOPMENT",
       icon: "▤",
-      description:
-        "Working towards building clean, responsive user interfaces with modern web technologies.",
+      description: "Working towards building clean, responsive user interfaces with modern web technologies.",
       status: "In progress",
       index: "07"
     },
-
     backend: {
       title: "Backend",
       category: "SOFTWARE DEVELOPMENT",
       icon: "{ }",
-      description:
-        "Exploring server-side programming, APIs and the logic that powers applications.",
+      description: "Exploring server-side programming, APIs and the logic that powers applications.",
       status: "Exploring",
       index: "08"
     },
-
     github: {
       title: "GitHub",
       category: "COLLABORATION",
       icon: "GH",
-      description:
-        "Using GitHub to publish code, manage repositories and document learning projects.",
+      description: "Using GitHub to publish code, manage repositories and document learning projects.",
       status: "Learning",
       index: "09"
     },
-
     debugging: {
       title: "Debugging",
       category: "PROBLEM SOLVING",
       icon: "⌕",
-      description:
-        "Learning to read errors, investigate unexpected behaviour and fix problems step by step.",
+      description: "Learning to read errors, investigate unexpected behaviour and fix problems step by step.",
       status: "Practising",
       index: "10"
     },
-
     learning: {
       title: "Continuous learning",
       category: "MY APPROACH",
       icon: "↗",
-      description:
-        "Breaking large goals into smaller tasks, practising regularly and improving through feedback.",
+      description: "Breaking large goals into smaller tasks, practising regularly and improving through feedback.",
       status: "Always on",
       index: "11"
     },
-
     about: {
       title: "Keep learning.",
       category: "MY JOURNEY",
       icon: "✳",
-      description:
-        "Every skill starts with curiosity. I'm building my foundation one step at a time.",
+      description: "Every skill starts with curiosity. I'm building my foundation one step at a time.",
       status: "In progress",
       index: "00"
     },
-
     future: {
       title: "What's next?",
       category: "FUTURE GOALS",
       icon: "↗",
-      description:
-        "My next steps are stronger fundamentals, more practical projects and a gradual path towards full-stack development.",
+      description: "My next steps are stronger fundamentals, more practical projects and a gradual path towards full-stack development.",
       status: "Planned",
       index: "12"
     }
@@ -260,12 +230,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function selectSkill(key) {
     const skill = skillData[key];
-
     if (!skill) return;
 
     keys.forEach((button) => {
       const isActive = button.dataset.skill === key;
-
       button.classList.toggle("is-active", isActive);
       button.setAttribute("aria-pressed", String(isActive));
     });
@@ -278,9 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (skillIndex) skillIndex.textContent = skill.index;
 
     if (detailLine) {
-      const progress = key === "about" ? "28%" :
-        key === "future" ? "18%" :
-        key === "learning" ? "65%" : "42%";
+      const progress =
+        key === "about"
+          ? "28%"
+          : key === "future"
+          ? "18%"
+          : key === "learning"
+          ? "65%"
+          : "42%";
 
       detailLine.style.width = progress;
     }
@@ -292,7 +265,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Keyboard can also be used without a mouse
   if (keyboard) {
     keyboard.addEventListener("keydown", (event) => {
       if (!["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp"].includes(event.key)) {
@@ -316,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Subtle keyboard perspective effect on pointer devices
+  // 6. Perspective Effect on Keyboard
   const keyboardStage = document.querySelector(".keyboard-stage");
 
   if (
@@ -332,17 +304,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const rotateY = (x - 0.5) * 3;
       const rotateX = (0.5 - y) * 2;
 
-      keyboard.style.transform =
-        `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      keyboard.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     keyboardStage.addEventListener("pointerleave", () => {
-      keyboard.style.transform =
-        "perspective(900px) rotateX(0deg) rotateY(0deg)";
+      keyboard.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
     });
   }
 
-  // Technology roadmap filters
+  // 7. Technology Roadmap Filters
   const filterButtons = document.querySelectorAll("[data-roadmap-filter]");
   const roadmapCards = document.querySelectorAll(".roadmap-card[data-category]");
 
@@ -352,15 +322,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       filterButtons.forEach((filter) => {
         const isActive = filter === button;
-
         filter.classList.toggle("is-active", isActive);
         filter.setAttribute("aria-pressed", String(isActive));
       });
 
       roadmapCards.forEach((card) => {
         const cardCategory = card.dataset.category;
-
-        // The roadmap note stays visible for every category.
         const isNote = card.classList.contains("roadmap-note");
         const matches =
           selectedCategory === "all" ||
@@ -372,53 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Copy email button
-  const copyEmailButton = document.getElementById("copyEmail");
-  const copyFeedback = document.getElementById("copyFeedback");
-
-  if (copyEmailButton) {
-    copyEmailButton.addEventListener("click", async () => {
-      const email = copyEmailButton.dataset.email;
-
-      if (!email || email === "your-email@example.com") {
-        if (copyFeedback) {
-          copyFeedback.textContent =
-            "Edit the button's data-email with your real email first.";
-        }
-        return;
-      }
-
-      try {
-        await navigator.clipboard.writeText(email);
-
-        if (copyFeedback) {
-          copyFeedback.textContent = "Email copied to clipboard.";
-        }
-      } catch (error) {
-        // Fallback for browsers that block clipboard access.
-        const temporaryInput = document.createElement("textarea");
-
-        temporaryInput.value = email;
-        temporaryInput.setAttribute("readonly", "");
-        temporaryInput.style.position = "absolute";
-        temporaryInput.style.left = "-9999px";
-
-        document.body.appendChild(temporaryInput);
-        temporaryInput.select();
-
-        const copied = document.execCommand("copy");
-        temporaryInput.remove();
-
-        if (copyFeedback) {
-          copyFeedback.textContent = copied
-            ? "Email copied to clipboard."
-            : `Email: ${email}`;
-        }
-      }
-    });
-  }
-
-  // Gentle profile card movement
+  // 8. Profile Card Motion
   const orbitScene = document.getElementById("orbitScene");
   const profileCard = document.getElementById("profileCard");
 
@@ -435,136 +356,219 @@ document.addEventListener("DOMContentLoaded", () => {
       const rotateY = (x - 0.5) * 8;
       const rotateX = (0.5 - y) * 5;
 
-      profileCard.style.transform =
-        `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+      profileCard.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
     });
 
     orbitScene.addEventListener("pointerleave", () => {
       profileCard.style.transform = "";
     });
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+  // 9. Avatar Switch Effect (Blur Animation)
   const avatar = document.getElementById("keiiAvatar");
-  if (!avatar) return;
+  if (avatar) {
+    const firstImage = "images/keii-avatar.jpg";
+    const secondImage = "images/keii-avatar2.jpg";
 
-  const firstImage = "images/keii-avatar.jpg";
-  const secondImage = "images/keii-avatar2.jpg";
+    let active = false;
+    let showingSecond = false;
+    let timer = null;
 
-  let active = false;
-  let showingSecond = false;
-  let timer = null;
+    // Preload ảnh thứ 2 sẵn vào bộ nhớ đệm
+    const preload = new Image();
+    preload.src = secondImage;
 
-  const preload = new Image();
-  preload.src = secondImage;
+    function swapImageWithBlur() {
+      // 1. Thêm class blur hình ảnh
+      avatar.classList.add("is-blurring");
 
-  function startEffect() {
-    if (active) return;
+      // 2. Chờ 150ms khi ảnh mờ đi thì mới tráo ảnh
+      setTimeout(() => {
+        showingSecond = !showingSecond;
+        avatar.src = showingSecond ? secondImage : firstImage;
 
-    active = true;
-    avatar.classList.add("is-switching");
-
-    timer = setInterval(() => {
-      showingSecond = !showingSecond;
-      avatar.src = showingSecond ? secondImage : firstImage;
-    }, 350);
-  }
-
-  function stopEffect() {
-    active = false;
-    clearInterval(timer);
-    timer = null;
-    showingSecond = false;
-    avatar.classList.remove("is-switching");
-    avatar.src = firstImage;
-  }
-
-  avatar.addEventListener("mouseenter", startEffect);
-  avatar.addEventListener("mouseleave", stopEffect);
-
-  avatar.addEventListener("touchstart", (event) => {
-    event.preventDefault();
-    if (active) {
-      stopEffect();
-    } else {
-      startEffect();
+        // 3. Bỏ class blur để ảnh rõ nét trở lại
+        setTimeout(() => {
+          avatar.classList.remove("is-blurring");
+        }, 50);
+      }, 150);
     }
-  }, { passive: false });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+    function startEffect() {
+      if (active) return;
+      active = true;
+      swapImageWithBlur();
+
+      // Chuyển đổi định kỳ mỗi 1.2 giây khi di chuột vào
+      timer = setInterval(swapImageWithBlur, 1200);
+    }
+
+    function stopEffect() {
+      active = false;
+      clearInterval(timer);
+      timer = null;
+      showingSecond = false;
+      avatar.classList.remove("is-blurring");
+      avatar.src = firstImage;
+    }
+
+    avatar.addEventListener("mouseenter", startEffect);
+    avatar.addEventListener("mouseleave", stopEffect);
+
+    avatar.addEventListener(
+      "touchstart",
+      (event) => {
+        event.preventDefault();
+        if (active) {
+          stopEffect();
+        } else {
+          startEffect();
+        }
+      },
+      { passive: false }
+    );
+  }
+  // 10. Background Music Player
   const music = document.getElementById("backgroundMusic");
   const toggle = document.getElementById("musicToggle");
   const mute = document.getElementById("musicMute");
   const progress = document.getElementById("musicProgress");
 
-  
-if (music) {
-  music.volume = 0.25;
+  if (music) {
+    music.volume = 0.25;
 
-  music.addEventListener("loadedmetadata", () => {
-    music.currentTime = 180; // Bắt đầu từ phút thứ 3
-  }, { once: true });
-
-  music.addEventListener("ended", () => {
-    music.currentTime = 180; // Hết bài thì quay lại phút thứ 3
-    music.play().catch(() => {});
-  });
-
-  music.play().catch(() => {
-    // Trình duyệt có thể chặn tự động phát nhạc
-  });
-}
-  music.addEventListener("timeupdate", () => {
-    if (Number.isFinite(music.duration) && music.duration > 0) {
-      progress.value = (music.currentTime / music.duration) * 100;
-    }
-  });
-
-  progress.addEventListener("input", () => {
-    if (Number.isFinite(music.duration) && music.duration > 0) {
-      music.currentTime = (Number(progress.value) / 100) * music.duration;
-    }
-  });
-
-  mute.addEventListener("click", () => {
-    music.muted = !music.muted;
-    mute.textContent = music.muted ? "×" : "♪";
-    mute.setAttribute("aria-label", music.muted ? "Unmute music" : "Mute music");
-  });
-
-  music.addEventListener("ended", () => {
-    toggle.textContent = "▶";
-    toggle.setAttribute("aria-label", "Play music");
-    progress.value = 0;
-  });
-});
-
-const themeToggle = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
-const themeLabel = document.getElementById("themeLabel");
-const themeToast = document.getElementById("themeToast");
-
-if (themeToggle && themeIcon && themeLabel && themeToast) {
-  themeToggle.addEventListener("click", () => {
-    const isLight = document.body.classList.toggle("light-mode");
-
-    themeIcon.textContent = isLight ? "☾" : "☀";
-    themeLabel.textContent = isLight ? "Dark mode" : "Light mode";
-
-    themeToggle.setAttribute(
-      "aria-label",
-      isLight ? "Switch to dark mode" : "Switch to light mode"
+    music.addEventListener(
+      "loadedmetadata",
+      () => {
+        music.currentTime = 180; // Bắt đầu từ phút thứ 3
+      },
+      { once: true }
     );
 
-    themeToast.textContent = isLight
-      ? "⚠️ Caution: Light mode ahead! You've switched to the light side ☀️"
-      : "🌙 Welcome back to the dark side. Your eyes are safe... maybe.";
+    music.addEventListener("ended", () => {
+      music.currentTime = 180;
+      music.play().catch(() => {});
+      if (toggle) toggle.textContent = "▶";
+      if (progress) progress.value = 0;
+    });
 
-    clearTimeout(window.themeToastTimer);
-    window.themeToastTimer = setTimeout(() => {
-      themeToast.textContent = "";
-    }, 3500);
-  });
-}
+    music.play().catch(() => {
+      // Autoplay bị chặn bởi trình duyệt
+    });
+
+    if (progress) {
+      music.addEventListener("timeupdate", () => {
+        if (Number.isFinite(music.duration) && music.duration > 0) {
+          progress.value = (music.currentTime / music.duration) * 100;
+        }
+      });
+
+      progress.addEventListener("input", () => {
+        if (Number.isFinite(music.duration) && music.duration > 0) {
+          music.currentTime = (Number(progress.value) / 100) * music.duration;
+        }
+      });
+    }
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        if (music.paused) {
+          music.play();
+          toggle.textContent = "⏸";
+        } else {
+          music.pause();
+          toggle.textContent = "▶";
+        }
+      });
+    }
+
+    if (mute) {
+      mute.addEventListener("click", () => {
+        music.muted = !music.muted;
+        mute.textContent = music.muted ? "×" : "♪";
+        mute.setAttribute(
+          "aria-label",
+          music.muted ? "Unmute music" : "Mute music"
+        );
+      });
+    }
+  }
+
+  // 11. Light / Dark Mode Toggle & Toast
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeLabel = document.getElementById("themeLabel");
+  const themeToast = document.getElementById("themeToast");
+
+  function showToast(message) {
+    if (!themeToast) return;
+    themeToast.textContent = message;
+    themeToast.classList.add("show");
+    setTimeout(() => themeToast.classList.remove("show"), 2500);
+  }
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("keii-theme", theme);
+
+    if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀" : "☾";
+    if (themeLabel) themeLabel.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+  }
+
+  const savedTheme = localStorage.getItem("keii-theme") || "dark";
+  setTheme(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const currentTheme =
+        document.documentElement.getAttribute("data-theme") || "dark";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      setTheme(newTheme);
+      showToast(`Switched to ${newTheme.toUpperCase()} mode`);
+    });
+  }
+
+  // 12. Contact Form Submission via Web3Forms
+  const contactForm = document.getElementById("contactForm");
+  const formStatus = document.getElementById("formStatus");
+  const formSubmitBtn = document.getElementById("formSubmitBtn");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (formStatus) {
+        formStatus.textContent = "Sending...";
+        formStatus.className = "copy-feedback";
+      }
+      if (formSubmitBtn) formSubmitBtn.disabled = true;
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" }
+        });
+
+        if (response.ok) {
+          if (formStatus) {
+            formStatus.textContent = "✓ Message sent successfully! I'll get back to you soon.";
+            formStatus.className = "copy-feedback success";
+          }
+          contactForm.reset();
+        } else {
+          throw new Error("Form submission failed");
+        }
+      } catch (error) {
+        if (formStatus) {
+          formStatus.textContent = "✕ Failed to send. Please try again or email directly.";
+          formStatus.className = "copy-feedback error";
+        }
+      } finally {
+        if (formSubmitBtn) formSubmitBtn.disabled = false;
+      }
+    });
+  }
+});

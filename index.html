@@ -20,6 +20,7 @@
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
   <header class="site-header">
+    <header class="site-header">
     <nav class="navbar container" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Keii home">
         <span class="brand-mark">K.</span>
@@ -38,9 +39,17 @@
         <a class="nav-link" href="#contact">Contact</a>
       </div>
 
-      <a class="nav-cta" href="#contact">
-        Let's talk <span aria-hidden="true">↗</span>
-      </a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <!-- NÚT CHUYỂN DỔI LIGHT / DARK MODE -->
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch theme">
+          <span id="themeIcon">☀</span>
+          <span id="themeLabel">Light Mode</span>
+        </button>
+
+        <a class="nav-cta" href="#contact">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </nav>
   </header>
 
@@ -312,13 +321,121 @@
 
     <!-- ROADMAP -->
     <section class="section container" id="skills">
-      <div class="section-heading reveal">
-        <div>
-          <p class="eyebrow"><span class="section-index">03</span> TECHNOLOGY ROADMAP</p>
-          <h2>The stack I'm<br><span class="muted-heading">working towards.</span></h2>
-        </div>
-        <p class="section-side-note">A learning roadmap, not a claim of mastery.</p>
-      </div>
+      <!-- TECH STACK SECTION (NARESH KHATRI STYLE) -->
+<section class="section container" id="skills">
+  <div class="section-heading reveal text-center">
+    <h2>Tech Stack</h2>
+    <p class="section-subtitle">Tools I build with</p>
+  </div>
+
+  <div class="tech-stack-grid reveal">
+    <!-- Row 1 -->
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+      <span>JavaScript</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+      <span>TypeScript</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+      <span>HTML</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+      <span>CSS</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+      <span>React</span>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue">
+      <span>Vue</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="invert-icon">
+      <span>Next.js</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind">
+      <span>Tailwind</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+      <span>Node.js</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="invert-icon">
+      <span>Express</span>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+      <span>PostgreSQL</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+      <span>MongoDB</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+      <span>Git</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="invert-icon">
+      <span>GitHub</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://api.iconify.design/vscode-icons:file-type-prettier.svg" alt="Prettier">
+      <span>Prettier</span>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM">
+      <span>NPM</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+      <span>Firebase</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress" class="invert-icon">
+      <span>WordPress</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+      <span>Linux</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+      <span>Docker</span>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="NginX">
+      <span>NginX</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="invert-icon">
+      <span>AWS</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
+      <span>Google Cloud</span>
+    </div>
+    <div class="tech-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="Vim">
+      <span>Vim</span>
+    </div>
+  </div>
+</section>
 
       <div class="roadmap-filters reveal" role="group" aria-label="Filter technology categories">
         <button class="filter-btn is-active" data-roadmap-filter="all" aria-pressed="true">All</button>
@@ -471,9 +588,46 @@
      target="_blank" rel="noopener noreferrer">
     Instagram <span>↗</span>
   </a>
-</div>
-          <p class="copy-feedback" id="copyFeedback" aria-live="polite"></p>
+</div><!-- FORM GỬI EMAIL -->
+          <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Thay YOUR_WEB3FORMS_ACCESS_KEY bằng key của bạn từ web3forms.com -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="New Contact from Portfolio">
+
+            <div class="form-group">
+              <label for="name" class="mono">YOUR NAME</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="mono">YOUR EMAIL</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="mono">YOUR MESSAGE</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell me about your project or say hi..." required></textarea>
+            </div>
+
+            <button type="submit" id="formSubmitBtn" class="button button-primary">
+              <span>Send message</span> <span aria-hidden="true">↗</span>
+            </button>
+          </form>
+
+          <p class="copy-feedback" id="formStatus" aria-live="polite"></p>
+
+          <div class="contact-social-links" style="margin-top: 20px;">
+            <a href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
+               target="_blank" rel="noopener noreferrer">
+              Facebook <span>↗</span>
+            </a>
+            <a href="https://www.instagram.com/takt.keii/"
+               target="_blank" rel="noopener noreferrer">
+              Instagram <span>↗</span>
+            </a>
+          </div>
         </div>
+
         <div class="contact-side mono">
           <span class="contact-side-number">K.</span>
           <span>THANKS FOR STOPPING BY.</span>
@@ -483,8 +637,7 @@
     </section>
   </main>
 
-  
-<footer class="site-footer container">
+  <footer class="site-footer container">
   <div class="footer-main">
     <a class="brand footer-brand" href="#home">
       <span class="brand-mark">K.</span>
@@ -501,10 +654,14 @@
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to light mode">
+  <!-- Nút Toggle Theme -->
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
   <span id="themeIcon">☀</span>
-  <span id="themeLabel"/span>
+  <span id="themeLabel">Light Mode</span>
 </button>
+
+<!-- Khung hiển thị thông báo Toast -->
+<div id="themeToast" class="theme-toast" role="status" aria-live="polite"></div>
 
 <div id="themeToast" class="theme-toast" role="status" aria-live="polite"></div>
 

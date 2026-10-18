@@ -30,28 +30,48 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+  background-color: #090909;
 }
 
 body {
   min-width: 320px;
   overflow-x: hidden;
-  background: var(--bg);
+  background: transparent !important;
   color: var(--text);
   font-family: var(--font);
   font-size: 14px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  background:
-    radial-gradient(ellipse at 50% -20%, rgba(255,255,255,.055), transparent 55%),
-    linear-gradient(180deg, #0a0a0a 0%, #090909 48%, #0b0b0b 100%);
-  content: "";
-  pointer-events: none;
+/* =========================================
+   3D CANVAS & VIDEO OVERLAY DUST PARTICLES
+   ========================================= */
+
+/* 1. Canvas 3D hạt sao Three.js */
+#bg3d {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -2 !important;
+  pointer-events: none !important;
+}
+
+/* 2. Video hạt bụi phủ */
+.video-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  mix-blend-mode: screen !important;
+  opacity: 0.75 !important;
 }
 
 a {
@@ -103,15 +123,15 @@ img {
 .page-noise {
   position: fixed;
   inset: 0;
-  z-index: -1;
-  opacity: .12;
+  z-index: -3;
+  opacity: .08;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.17'/%3E%3C/svg%3E");
 }
 
 .ambient {
   position: absolute;
-  z-index: -2;
+  z-index: -3;
   width: 440px;
   height: 440px;
   border-radius: 50%;
@@ -407,9 +427,8 @@ img {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 20px;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(255,255,255,.055), transparent 45%),
-    linear-gradient(145deg, #111111, #090909 70%);
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(8px);
   perspective: 900px;
 }
 
@@ -450,8 +469,9 @@ img {
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.17);
   border-radius: 15px;
-  background: linear-gradient(150deg, #1b1b1b, #101010);
+  background: rgba(20, 20, 20, 0.85);
   box-shadow: 0 25px 75px rgba(0,0,0,.5);
+  backdrop-filter: blur(12px);
   transform: rotateY(-7deg) rotateX(3deg);
   transition: transform .3s var(--ease);
 }
@@ -505,7 +525,7 @@ img {
   width: 100%;
   aspect-ratio: 1.2 / 1;
   overflow: hidden;
-  background: linear-gradient(135deg, #2a2a28, #101010);
+  background: rgba(30, 30, 30, 0.5);
 }
 
 .avatar-frame img {
@@ -654,7 +674,8 @@ img {
 .panel {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(22,22,22,.92), rgba(13,13,13,.92));
+  background: rgba(18, 18, 18, 0.75);
+  backdrop-filter: blur(12px);
   transition: border-color .3s ease, background .3s ease, transform .3s var(--ease);
 }
 
@@ -822,7 +843,8 @@ img {
   padding: 20px 12px;
   border: 1px solid rgba(255,255,255,.07);
   border-radius: 14px;
-  background: linear-gradient(155deg, #111, #0a0a0a);
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(8px);
   transform-style: preserve-3d;
   transition: transform .15s ease-out;
 }
@@ -1094,9 +1116,7 @@ img {
 }
 
 .roadmap-note {
-  background:
-    radial-gradient(circle at 100% 0%, rgba(255,255,255,.06), transparent 50%),
-    linear-gradient(145deg, #1b1b1a, #101010);
+  background: rgba(22, 22, 22, 0.85);
 }
 
 .roadmap-note-symbol {
@@ -1141,9 +1161,7 @@ img {
   place-items: center;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 52%),
-    #101010;
+  background: rgba(16, 16, 16, 0.6);
 }
 
 .preview-window,
@@ -1152,7 +1170,7 @@ img {
   overflow: hidden;
   border: 1px solid #3b3b37;
   border-radius: 10px;
-  background: #151514;
+  background: rgba(21, 21, 20, 0.9);
   box-shadow: 0 20px 50px rgba(0,0,0,.35);
   transform: rotate(-3deg);
   transition: transform .35s var(--ease);
@@ -1236,9 +1254,7 @@ img {
 }
 
 .preview-code {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,.035), transparent 50%),
-    #0c0c0c;
+  background: rgba(12, 12, 12, 0.6);
 }
 
 .code-window {
@@ -1325,9 +1341,8 @@ img {
   gap: 30px;
   padding: clamp(25px, 5vw, 55px);
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(255,255,255,.06), transparent 55%),
-    linear-gradient(140deg, #171716, #0d0d0d 70%);
+  background: rgba(18, 18, 18, 0.82);
+  backdrop-filter: blur(14px);
 }
 
 .contact-copy {
@@ -1804,7 +1819,8 @@ img {
   gap: 14px;
   border: 1px solid #303030;
   border-radius: 14px;
-  background: #111;
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(8px);
   transition: transform 0.25s ease,
               border-color 0.25s ease,
               background 0.25s ease;
@@ -1813,7 +1829,7 @@ img {
 .tech-item:hover {
   transform: translateY(-5px);
   border-color: #777;
-  background: #191919;
+  background: rgba(25, 25, 25, 0.85);
 }
 
 .tech-item img {
@@ -2228,12 +2244,6 @@ img {
   --accent-color: #000000;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Style cho nút Theme Toggle */
 .theme-toggle {
   background: var(--panel-bg);
@@ -2277,9 +2287,9 @@ body {
 .theme-toast.show {
   opacity: 1;
   transform: translateY(0);
-}/* =========================================
-   CONTACT FORM STYLES
-   ========================================= */
+}
+
+/* CONTACT FORM STYLES */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -2325,28 +2335,6 @@ body {
 }
 .copy-feedback.success { color: #4CAF50; }
 .copy-feedback.error { color: #F44336; }
-/* =========================================
-   THEME TOGGLE BUTTON & TOAST STYLES
-   ========================================= */
-.theme-toggle {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-color, #ffffff);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 8px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.8rem;
-  transition: all 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 
 /* Biến màu sắc cho Light Mode */
 [data-theme="light"] {
@@ -2373,103 +2361,6 @@ body {
   border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Toast thông báo góc màn hình */
-.theme-toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #181818;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-family: 'DM Mono', monospace;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 9999;
-}
-
-.theme-toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* =========================================
-   LIGHT MODE STYLES (ĐỔI MÀU TOÀN BỘ)
-   ========================================= */
-[data-theme="light"] {
-  --bg-color: #f8f9fa !important;
-  --text-color: #121212 !important;
-  --panel-bg: #ffffff !important;
-  --border-color: rgba(0, 0, 0, 0.12) !important;
-}
-
-[data-theme="light"] body {
-  background-color: #f8f9fa !important;
-  color: #121212 !important;
-}
-
-[data-theme="light"] .site-header,
-[data-theme="light"] .panel,
-[data-theme="light"] .profile-card,
-[data-theme="light"] .about-main,
-[data-theme="light"] .about-stat,
-[data-theme="light"] .about-note,
-[data-theme="light"] .roadmap-card,
-[data-theme="light"] .project-card,
-[data-theme="light"] .contact-panel,
-[data-theme="light"] .site-footer {
-  background-color: #ffffff !important;
-  color: #121212 !important;
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="light"] .nav-link,
-[data-theme="light"] .muted-heading,
-[data-theme="light"] p,
-[data-theme="light"] span {
-  color: #2b2b2b !important;
-}
-
-[data-theme="light"] .nav-link.active {
-  color: #000000 !important;
-  font-weight: 600;
-}
-
-[data-theme="light"] .theme-toggle {
-  background: rgba(0, 0, 0, 0.06) !important;
-  color: #121212 !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Toast thông báo */
-.theme-toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #181818;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-family: 'DM Mono', monospace;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 9999;
-}
-
-.theme-toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
 /* =========================================
    TECH STACK GRID (NARESH KHATRI STYLE)
    ========================================= */
@@ -2507,6 +2398,7 @@ body {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(8px);
 }
 
 .tech-card img {
@@ -2524,9 +2416,8 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Hiệu ứng Hover đổi màu nền & nâng thẻ */
 .tech-card:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-4px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.05);
@@ -2536,12 +2427,10 @@ body {
   transform: scale(1.12);
 }
 
-/* Tự động đảo màu icon đen thành trắng cho Dark Mode */
 .invert-icon {
   filter: brightness(0) invert(1);
 }
 
-/* Light Mode Support */
 [data-theme="light"] .tech-card {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.08);
@@ -2555,7 +2444,6 @@ body {
   filter: none;
 }
 
-/* Responsive cho Mobile & Tablet */
 @media (max-width: 900px) {
   .tech-stack-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -2567,15 +2455,13 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-/* =========================================
-   AVATAR SMOOTH SWITCH & BLUR ANIMATION
-   ========================================= */
+
+/* AVATAR ANIMATION */
 .keii-avatar {
   transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   will-change: filter, transform, opacity;
 }
 
-/* Lớp CSS kích hoạt khi đang chuyển đổi hình ảnh */
 .keii-avatar.is-blurring {
   filter: blur(8px) brightness(1.1);
   transform: scale(0.96);

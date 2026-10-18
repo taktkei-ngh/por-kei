@@ -11,16 +11,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
 
 <body>
+  <!-- 1. VIDEO OVERLAY DUST PARTICLES -->
+  <video id="videoOverlay" autoplay loop muted playsinline class="video-overlay">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-dust-particles-floating-in-a-beam-of-light-41546-large.mp4" type="video/mp4">
+  </video>
+
+  <!-- 2. CANVAS 3D BACKGROUND -->
+  <canvas id="bg3d"></canvas>
+
   <div class="page-noise" aria-hidden="true"></div>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
+  <!-- HEADER NAVBAR -->
   <header class="site-header">
-    <header class="site-header">
     <nav class="navbar container" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Keii home">
         <span class="brand-mark">K.</span>
@@ -40,7 +47,7 @@
       </div>
 
       <div style="display: flex; align-items: center; gap: 12px;">
-        <!-- NÚT CHUYỂN DỔI LIGHT / DARK MODE -->
+        <!-- NÚT CHUYỂN ĐỔI LIGHT / DARK MODE -->
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch theme">
           <span id="themeIcon">☀</span>
           <span id="themeLabel">Light Mode</span>
@@ -70,56 +77,55 @@
         </p>
 
         <div class="hero-actions">
-            
-        <!-- SOCIAL APP SHORTCUTS -->
-        <div class="social-dock" aria-label="Social media links">
-          <a
-            class="social-app"
-            href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            title="Facebook"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5v1.9H7V13h2.8v8h3.7z" fill="currentColor"/>
-            </svg>
-            <span>Facebook</span>
-            <span class="social-app-arrow">↗</span>
-          </a>
+          <!-- SOCIAL APP SHORTCUTS -->
+          <div class="social-dock" aria-label="Social media links">
+            <a
+              class="social-app"
+              href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              title="Facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5v1.9H7V13h2.8v8h3.7z" fill="currentColor"/>
+              </svg>
+              <span>Facebook</span>
+              <span class="social-app-arrow">↗</span>
+            </a>
 
-          <a
-            class="social-app"
-            href="https://www.instagram.com/takt.keii/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            title="Instagram"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <circle cx="17.7" cy="6.7" r="1.1" fill="currentColor"/>
-            </svg>
-            <span>Instagram</span>
-            <span class="social-app-arrow">↗</span>
-          </a>
+            <a
+              class="social-app"
+              href="https://www.instagram.com/takt.keii/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              title="Instagram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="17.7" cy="6.7" r="1.1" fill="currentColor"/>
+              </svg>
+              <span>Instagram</span>
+              <span class="social-app-arrow">↗</span>
+            </a>
 
-          <a
-            class="social-app"
-            href="https://github.com/taktkei-ngh"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            title="GitHub"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.3.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.7 10.7 0 0 1 5.7 0c2.1-1.5 3.1-1.2 3.1-1.2.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6A11.1 11.1 0 0 0 12 .9z"/>
-            </svg>
-            <span>GitHub</span>
-            <span class="social-app-arrow">↗</span>
-          </a>
-        </div>
+            <a
+              class="social-app"
+              href="https://github.com/taktkei-ngh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.3.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.7 10.7 0 0 1 5.7 0c2.1-1.5 3.1-1.2 3.1-1.2.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6A11.1 11.1 0 0 0 12 .9z"/>
+              </svg>
+              <span>GitHub</span>
+              <span class="social-app-arrow">↗</span>
+            </a>
+          </div>
 
           <a class="button button-primary" href="#projects">
             Explore my work <span aria-hidden="true">↗</span>
@@ -146,7 +152,7 @@
           <div class="orbit orbit-small"></div>
           <div class="orbit-point"></div>
 
-          <div class="profile-card" id="profileCard">
+          <div class="profile-card" id="profileCard" data-tilt data-tilt-max="10">
             <div class="profile-card-top">
               <span class="mono">KEII.EXE</span>
               <span class="window-dots"><i></i><i></i><i></i></span>
@@ -154,13 +160,12 @@
 
             <div class="avatar-frame">
               <img
-  id="keiiAvatar"
-  class="keii-avatar"
-  src="images/keii-avatar.jpg"
-  data-hover-src="images/keii-avatar2.jpg"
-  alt="Keii avatar"
-/>
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                id="keiiAvatar"
+                class="keii-avatar"
+                src="images/keii-avatar.jpg"
+                data-hover-src="images/keii-avatar2.jpg"
+                alt="Keii avatar"
+              />
               <div class="avatar-fallback" aria-hidden="true">K.</div>
             </div>
 
@@ -319,123 +324,120 @@
       </div>
     </section>
 
-    <!-- ROADMAP -->
+    <!-- ROADMAP & TECH STACK -->
     <section class="section container" id="skills">
-      <!-- TECH STACK SECTION (NARESH KHATRI STYLE) -->
-<section class="section container" id="skills">
-  <div class="section-heading reveal text-center">
-    <h2>Tech Stack</h2>
-    <p class="section-subtitle">Tools I build with</p>
-  </div>
+      <div class="section-heading reveal text-center">
+        <h2>Tech Stack</h2>
+        <p class="section-subtitle">Tools I build with</p>
+      </div>
 
-  <div class="tech-stack-grid reveal">
-    <!-- Row 1 -->
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-      <span>JavaScript</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
-      <span>TypeScript</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
-      <span>HTML</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
-      <span>CSS</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-      <span>React</span>
-    </div>
+      <div class="tech-stack-grid reveal">
+        <!-- Row 1 -->
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+          <span>JavaScript</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+          <span>TypeScript</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+          <span>HTML</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+          <span>CSS</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+          <span>React</span>
+        </div>
 
-    <!-- Row 2 -->
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue">
-      <span>Vue</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="invert-icon">
-      <span>Next.js</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind">
-      <span>Tailwind</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
-      <span>Node.js</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="invert-icon">
-      <span>Express</span>
-    </div>
+        <!-- Row 2 -->
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue">
+          <span>Vue</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="invert-icon">
+          <span>Next.js</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind">
+          <span>Tailwind</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+          <span>Node.js</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="invert-icon">
+          <span>Express</span>
+        </div>
 
-    <!-- Row 3 -->
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
-      <span>PostgreSQL</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
-      <span>MongoDB</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-      <span>Git</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="invert-icon">
-      <span>GitHub</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://api.iconify.design/vscode-icons:file-type-prettier.svg" alt="Prettier">
-      <span>Prettier</span>
-    </div>
+        <!-- Row 3 -->
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+          <span>PostgreSQL</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+          <span>MongoDB</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+          <span>Git</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="invert-icon">
+          <span>GitHub</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://api.iconify.design/vscode-icons:file-type-prettier.svg" alt="Prettier">
+          <span>Prettier</span>
+        </div>
 
-    <!-- Row 4 -->
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM">
-      <span>NPM</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
-      <span>Firebase</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress" class="invert-icon">
-      <span>WordPress</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
-      <span>Linux</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
-      <span>Docker</span>
-    </div>
+        <!-- Row 4 -->
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM">
+          <span>NPM</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+          <span>Firebase</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress" class="invert-icon">
+          <span>WordPress</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+          <span>Linux</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+          <span>Docker</span>
+        </div>
 
-    <!-- Row 5 -->
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="NginX">
-      <span>NginX</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="invert-icon">
-      <span>AWS</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
-      <span>Google Cloud</span>
-    </div>
-    <div class="tech-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="Vim">
-      <span>Vim</span>
-    </div>
-  </div>
-</section>
+        <!-- Row 5 -->
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="NginX">
+          <span>NginX</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="invert-icon">
+          <span>AWS</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
+          <span>Google Cloud</span>
+        </div>
+        <div class="tech-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="Vim">
+          <span>Vim</span>
+        </div>
+      </div>
 
       <div class="roadmap-filters reveal" role="group" aria-label="Filter technology categories">
         <button class="filter-btn is-active" data-roadmap-filter="all" aria-pressed="true">All</button>
@@ -510,7 +512,7 @@
       </div>
 
       <div class="projects-grid">
-        <article class="project-card panel reveal">
+        <article class="project-card panel reveal" data-tilt data-tilt-max="8">
           <div class="project-preview preview-portfolio">
             <div class="preview-window">
               <div class="preview-window-bar"><i></i><i></i><i></i></div>
@@ -530,7 +532,7 @@
           </div>
         </article>
 
-        <article class="project-card panel reveal">
+        <article class="project-card panel reveal" data-tilt data-tilt-max="8">
           <div class="project-preview preview-code">
             <div class="code-window">
               <div class="preview-window-bar"><i></i><i></i><i></i></div>
@@ -567,30 +569,18 @@
             I'm still learning and growing. If you'd like to connect, exchange ideas
             or talk about development, feel free to reach out.
           </p>
-          
-<div class="contact-actions">
-  <a class="button button-primary" href="mailto:huykeii47@gmail.com">
-    Let's talk <span aria-hidden="true">↗</span>
-  </a>
-  <a class="button button-quiet"
-     href="https://github.com/taktkei-ngh"
-     target="_blank" rel="noopener noreferrer">
-    GitHub <span aria-hidden="true">↗</span>
-  </a>
-</div>
 
-<div class="contact-social-links">
-  <a href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
-     target="_blank" rel="noopener noreferrer">
-    Facebook <span>↗</span>
-  </a>
-  <a href="https://www.instagram.com/takt.keii/"
-     target="_blank" rel="noopener noreferrer">
-    Instagram <span>↗</span>
-  </a>
-</div><!-- FORM GỬI EMAIL -->
+          <div class="contact-actions">
+            <a class="button button-primary" href="mailto:huykeii47@gmail.com">
+              Let's talk <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-quiet" href="https://github.com/taktkei-ngh" target="_blank" rel="noopener noreferrer">
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <!-- FORM GỬI EMAIL -->
           <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-            <!-- Thay YOUR_WEB3FORMS_ACCESS_KEY bằng key của bạn từ web3forms.com -->
             <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
             <input type="hidden" name="subject" value="New Contact from Portfolio">
 
@@ -617,12 +607,10 @@
           <p class="copy-feedback" id="formStatus" aria-live="polite"></p>
 
           <div class="contact-social-links" style="margin-top: 20px;">
-            <a href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
-               target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN" target="_blank" rel="noopener noreferrer">
               Facebook <span>↗</span>
             </a>
-            <a href="https://www.instagram.com/takt.keii/"
-               target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/takt.keii/" target="_blank" rel="noopener noreferrer">
               Instagram <span>↗</span>
             </a>
           </div>
@@ -637,76 +625,62 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer container">
-  <div class="footer-main">
-    <a class="brand footer-brand" href="#home">
-      <span class="brand-mark">K.</span>
-      <span>keii<span class="brand-dot">.</span></span>
-    </a>
+    <div class="footer-main">
+      <a class="brand footer-brand" href="#home">
+        <span class="brand-mark">K.</span>
+        <span>keii<span class="brand-dot">.</span></span>
+      </a>
 
-    <p class="footer-message">
-      Curious by nature. Building one step at a time.
-    </p>
+      <p class="footer-message">
+        Curious by nature. Building one step at a time.
+      </p>
 
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="#about">About</a>
-      <a href="#skills">Tech stack</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  <!-- Nút Toggle Theme -->
-<button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-  <span id="themeIcon">☀</span>
-  <span id="themeLabel">Light Mode</span>
-</button>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Tech stack</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-<!-- Khung hiển thị thông báo Toast -->
-<div id="themeToast" class="theme-toast" role="status" aria-live="polite"></div>
-
-<div id="themeToast" class="theme-toast" role="status" aria-live="polite"></div>
-
-    <div class="footer-socials">
-      <a href="https://github.com/taktkei-ngh"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="GitHub">GH ↗</a>
-
-      <a href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="Facebook">FB ↗</a>
-
-      <a href="https://www.instagram.com/takt.keii/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="Instagram">IG ↗</a>
+      <div class="footer-socials">
+        <a href="https://github.com/taktkei-ngh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH ↗</a>
+        <a href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB ↗</a>
+        <a href="https://www.instagram.com/takt.keii/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG ↗</a>
+      </div>
     </div>
+
+    <div class="footer-bottom">
+      <span>DESIGNED & BUILT BY KEII</span>
+      <span>© <span id="year"></span> KEII · KEEP LEARNING.</span>
+      <a href="#home">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player" id="musicPlayer">
+    <audio id="backgroundMusic" autoplay loop preload="auto">
+      <source src="music/tuancui.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle" class="music-toggle" type="button" aria-label="Play music">▶</button>
+
+    <div class="music-info">
+      <span class="music-label">NOW PLAYING</span>
+      <span class="music-track" id="musicTrack">Keii's soundtrack</span>
+      <input id="musicProgress" class="music-progress" type="range" min="0" max="100" value="0" aria-label="Music progress">
+    </div>
+
+    <button id="musicMute" class="music-mute" type="button" aria-label="Mute music">♪</button>
   </div>
 
-  <div class="footer-bottom">
-    <span>DESIGNED & BUILT BY KEII</span>
-    <span>© <span id="year"></span> KEII · KEEP LEARNING.</span>
-    <a href="#home">BACK TO TOP ↑</a>
-  </div>
-</footer>
+  <!-- TOAST NOTIFICATION -->
+  <div id="themeToast" class="theme-toast" role="status" aria-live="polite"></div>
+
+  <!-- SCRIPT LIBRARIES (ĐÚNG THỨ TỰ NHÚNG) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="script.js"></script>
 </body>
-
-<div class="music-player" id="musicPlayer">
-<audio id="backgroundMusic" autoplay loop preload="auto">
-    <source src="music/tuancui.mp3" type="audio/mpeg">
-  </audio>
-
-  <button id="musicToggle" class="music-toggle"
-          type="button" aria-label="Play music">
-    ▶
-  </button>
-
-  <div class="music-info">
-    <span class="music-label">NOW PLAYING</span>
-    <span class="music-track" id="musicTrack">Keii's soundtrack</span>
-    <input id="musicProgress" class="music-progress"
-           type="range" min="0" max="100" value="0"
-           aria-label="Music progress">
-  </div>
-
-  <button id="musicMute" class="music-mute"
-          type="button" aria-label="Mute music">♪</button>
-</div>
 </html>

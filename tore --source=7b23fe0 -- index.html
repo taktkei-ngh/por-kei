@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Keii — aspiring software developer exploring web development, programming and creative digital experiences.">
+  <title>Keii — Developer Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Keii home">
+        <span class="brand-mark">K.</span>
+        <span>keii<span class="brand-dot">.</span></span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <!-- NÚT CHUYỂN DỔI LIGHT / DARK MODE -->
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch theme">
+          <span id="themeIcon">☀</span>
+          <span id="themeLabel">Light Mode</span>
+        </button>
+
+        <a class="nav-cta" href="#contact">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          <span>ASPIRING SOFTWARE DEVELOPER</span>
+        </div>
+
+        <h1>Building my way<br>into the <span class="muted-heading">digital world.</span></h1>
+
+        <p class="hero-description">
+          Hey, I'm <strong>Keii</strong> — also known as Nguyen Gia Huy.
+          I'm learning to build useful digital experiences, one line of code at a time.
+        </p>
+
+        <div class="hero-actions">
+            
+        <!-- SOCIAL APP SHORTCUTS -->
+        <div class="social-dock" aria-label="Social media links">
+          <a
+            class="social-app"
+            href="https://www.facebook.com/profile.php?id=61592129280513&locale=vi_VN"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            title="Facebook"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5v1.9H7V13h2.8v8h3.7z" fill="currentColor"/>
+            </svg>
+            <span>Facebook</span>
+            <span class="social-app-arrow">↗</span>
+          </a>
+
+          <a
+            class="social-app"
+            href="https://www.instagram.com/takt.keii/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            title="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="17.7" cy="6.7" r="1.1" fill="currentColor"/>
+            </svg>
+            <span>Instagram</span>
+            <span class="social-app-arrow">↗</span>
+          </a>
+
+          <a
+            class="social-app"
+            href="https://github.com/taktkei-ngh"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.3.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.7 10.7 0 0 1 5.7 0c2.1-1.5 3.1-1.2 3.1-1.2.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6A11.1 11.1 0 0 0 12 .9z"/>
+            </svg>
+            <span>GitHub</span>
+            <span class="social-app-arrow">↗</span>
+          </a>
+        </div>
+
+          <a class="button button-primary" href="#projects">
+            Explore my work <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button button-quiet" href="#about">
+            More about me <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span><span class="meta-symbol">⌘</span> Learning by building</span>
+          <span><span class="meta-symbol">⌖</span> Vietnam</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="visual-topline">
+          <span>PERSONAL SPACE</span>
+          <span class="mono">01 / INTRO</span>
+        </div>
+
+        <div class="orbit-scene" id="orbitScene">
+          <div class="orbit orbit-large"></div>
+          <div class="orbit orbit-small"></div>
+          <div class="orbit-point"></div>
+
+          <div class="profile-card" id="profileCard">
+            <div class="profile-card-top">
+              <span class="mono">KEII.EXE</span>
+              <span class="window-dots"><i></i><i></i><i></i></span>
+            </div>
+
+            <div class="avatar-frame">
+              <img
+  id="keiiAvatar"
+  class="keii-avatar"
+  src="images/keii-avatar.jpg"
+  data-hover-src="images/keii-avatar2.jpg"
+  alt="Keii avatar"
+/>
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+              <div class="avatar-fallback" aria-hidden="true">K.</div>
+            </div>
+
+            <div class="profile-info">
+              <p class="profile-label">CURRENTLY EXPLORING</p>
+              <h2>Code. Learn. Repeat.</h2>
+              <p>Turning curiosity into projects.</p>
+            </div>
+
+            <div class="profile-card-bottom">
+              <span><span class="status-dot"></span> Open to learning</span>
+              <span class="mono">v.01</span>
+            </div>
+          </div>
+
+          <div class="floating-label label-top">
+            <span class="label-icon">✳</span>
+            <span>Creative thinking</span>
+          </div>
+          <div class="floating-label label-bottom">
+            <span class="label-icon">⌘</span>
+            <span>Always learning</span>
+          </div>
+        </div>
+
+        <div class="visual-bottomline">
+          <span>DESIGNED TO EXPLORE</span>
+          <span class="mono">SCROLL TO DISCOVER ↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <div class="ticker-wrap" aria-label="Areas of interest">
+      <div class="ticker">
+        <span>SOFTWARE DEVELOPMENT</span><i>✳</i>
+        <span>WEB TECHNOLOGIES</span><i>✳</i>
+        <span>CREATIVE CODING</span><i>✳</i>
+        <span>CONTINUOUS LEARNING</span><i>✳</i>
+        <span>SOFTWARE DEVELOPMENT</span><i>✳</i>
+        <span>WEB TECHNOLOGIES</span><i>✳</i>
+        <span>CREATIVE CODING</span><i>✳</i>
+        <span>CONTINUOUS LEARNING</span><i>✳</i>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section container" id="about">
+      <div class="section-heading re
